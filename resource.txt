@@ -1,1 +1,58 @@
+### Drop tables ###
 
+1. Run to generate a 
+  rails generate migration DropTablename
+
+A file will be created, in the db > migrate folder, make sure it looks like:
+
+class DropUsers < ActiveRecord::Migration
+  def change
+    drop_table :users
+  end
+end
+
+2. Drop model
+  rails d model table_name (e.g. photo)
+
+3. Drop controller
+  rails d controller table_name (e. g. user) 
+
+  
+4. Run migrations pending
+  rails db:migrate RAILS_ENV=development
+
+or rails g migration DropTablename (e.g. DropPhoto)
+
+
+### Draft Resource Generator ###
+
+https://chapters.firstdraft.com/chapters/773
+
+Note: All tables will automatically get the usual id, created_at, and updated_at columns.
+
+Commands for this project:
+
+Photo
+rails generate draft:resource photo caption:text comments_count:integer image:string likes_count:integer owner_id:integer
+
+User (account generates a user with email and password_digest)
+ rails generate draft:account user comments_count:integer likes_count:integer private:boolean username:string
+
+Comment
+ rails generate draft:resource comment author_id:integer body:text photo_id:integer
+
+FollowRequest
+ rails generate draft:resource follow_request recipient_id:integer sender_id:integer status:string
+
+Like
+ rails generate draft:resource like fan_id:integer photo_id:integer
+
+Note: Run this command after creating resources
+  rails db:migrate RAILS_ENV=development
+
+Note: Run this command to get sample data
+  rails sample_data
+
+ ### Association Records Generator ###
+
+https://association-accessors.firstdraft.com/
