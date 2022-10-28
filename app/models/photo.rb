@@ -12,4 +12,20 @@
 #  owner_id       :integer
 #
 class Photo < ApplicationRecord
+  
+    # Associations:
+
+    belongs_to(:poster, { :class_name => "User", :foreign_key => "owner_id", :required => true })
+
+    # belongs_to(:poster, { :class_name => "User", :foreign_key => "owner_id" })
+  
+    # def poster
+    #   my_owner_id = self.owner_id
+  
+    #   matching_users = User.where({ :id => my_owner_id })
+  
+    #   the_user = matching_users.at(0)
+  
+    #   return the_user
+    # end
 end

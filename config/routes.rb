@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  # HOME
+  get("/", { :controller => "photos", :action => "index" })
 
   # Routes for the Like resource:
 
