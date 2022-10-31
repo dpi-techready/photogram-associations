@@ -3,6 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.3'
 
+# Bundle to turn booleans into "yes or "no"
+#gem 'humanize_boolean'
+
+# Bundle for image uploads
+gem "carrierwave"
+gem "cloudinary"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 # Use sqlite3 as the database for Active Record

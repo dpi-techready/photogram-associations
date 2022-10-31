@@ -21,8 +21,10 @@ class PhotosController < ApplicationController
     the_photo = Photo.new
     the_photo.caption = params.fetch("query_caption")
     the_photo.comments_count = params.fetch("query_comments_count")
+    # the_photo.comments_count = 0
     the_photo.image = params.fetch("query_image")
     the_photo.likes_count = params.fetch("query_likes_count")
+    # the_photo.likes_count = 0
     the_photo.owner_id = params.fetch("query_owner_id")
 
     if the_photo.valid?
@@ -45,7 +47,7 @@ class PhotosController < ApplicationController
 
     if the_photo.valid?
       the_photo.save
-      redirect_to("/photos/#{the_photo.id}", { :notice => "Photo updated successfully."} )
+      redirect_to("/photos/#{the_photo.id}", { :notice => "Photo updated successfully." })
     else
       redirect_to("/photos/#{the_photo.id}", { :alert => the_photo.errors.full_messages.to_sentence })
     end
@@ -57,6 +59,6 @@ class PhotosController < ApplicationController
 
     the_photo.destroy
 
-    redirect_to("/photos", { :notice => "Photo deleted successfully."} )
+    redirect_to("/photos", { :notice => "Photo deleted successfully." })
   end
 end

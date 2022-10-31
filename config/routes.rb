@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   # HOME
-  get("/", { :controller => "photos", :action => "index" })
+  get("/", { :controller => "users", :action => "index" })
 
   # Routes for the Like resource:
 
@@ -62,13 +62,20 @@ Rails.application.routes.draw do
 
   # Routes for the User account:
 
+  # READ
+  get("/users", { :controller => "users", :action => "index" })
+
+  get("/users/:path_id", { :controller => "users", :action => "show" })
+
   # SIGN UP FORM
-  get("/user_sign_up", { :controller => "user_authentication", :action => "sign_up_form" })        
+  get("/user_sign_up", { :controller => "user_authentication", :action => "sign_up_form" })  
+
   # CREATE RECORD
   post("/insert_user", { :controller => "user_authentication", :action => "create"  })
       
   # EDIT PROFILE FORM        
-  get("/edit_user_profile", { :controller => "user_authentication", :action => "edit_profile_form" })       
+  get("/edit_user_profile", { :controller => "user_authentication", :action => "edit_profile_form" })
+
   # UPDATE RECORD
   post("/modify_user", { :controller => "user_authentication", :action => "update" })
   

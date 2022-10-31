@@ -1,20 +1,30 @@
 <div>
   <div>
     <h1>
-      List of all photos
+      List of photos
     </h1>
   </div>
 </div>
 
+<% if @current_user != nil %>
 <hr>
-
 <div>
   <div>
     <h2>
       Add a new photo
     </h2>
 
-    <form action="/insert_photo" method="post">
+    <form action="/insert_photo" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <!--<form action="/insert_photo" method="post">-->
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+        <input type="file" id="image_box" name="query_image" class="form-control">
+        <!--<input type="text" id="image_box" name="query_image">-->
+      </div>
+
       <div>
         <label for="caption_box">
           Caption
@@ -23,47 +33,114 @@
         <textarea id="caption_box" name="query_caption" rows="3"></textarea>
       </div>
 
-      <div>
+      <!--<div>
         <label for="comments_count_box">
           Comments count
         </label>
 
         <input type="text" id="comments_count_box" name="query_comments_count">
-      </div>
+      </div>-->
 
-      <div>
+      <!--<div>
         <label for="image_box">
           Image
         </label>
-
+        <input type="file" id="image_box" name="query_image" class="form-control">
         <input type="text" id="image_box" name="query_image">
-      </div>
+      </div>-->
 
-      <div>
+      <!--<div>
         <label for="likes_count_box">
           Likes count
         </label>
 
         <input type="text" id="likes_count_box" name="query_likes_count">
-      </div>
+      </div>-->
 
       <div>
-        <label for="owner_id_box">
+        <!--<label for="owner_id_box">
           Owner
-        </label>
+        </label>-->
 
-        <input type="text" id="owner_id_box" name="query_owner_id">
+        <input type="hidden" id="owner_id_box" name="query_owner_id" value="<%= @current_user.id %>">
       </div>
 
       <button>
-        Create photo
+        Add photo
       </button>
     </form>
   </div>
 </div>
+<hr>
+<% end %>
+
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          Image
+        </th>
+
+        <th>
+          Caption
+        </th>
+
+        <th>
+          Owner
+        </th>
+
+        <th>
+          Posted
+        </th>
+
+        <th>
+          Likes
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_photos.each do |a_photo| %>
+      <tr>
+        <td>
+          <img src="<%= a_photo.image %>">
+          <%#= a_photo.image %>
+        </td>
+
+        <td>
+          <%= a_photo.caption %>
+        </td>
+          <% u = User.where({ :id => a_photo.owner_id }).at(0) %>
+        <td>
+        <%= u.username %>
+          <%#= a_photo.id%>
+        </td>
+
+
+        <td>
+          <%= time_ago_in_words(a_photo.created_at) %> ago
+        </td>
+
+        <td>
+          <%= a_photo.likes_count %>
+        </td>
+
+        <td>
+          <a href="/photos/<%= a_photo.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
 
 <hr>
-<div>
+
+<!--<div>
   <div>
     <table border="1">
       <tr>
@@ -118,7 +195,8 @@
         </td>
 
         <td>
-          <%= a_photo.image %>
+          <img src="<%= a_photo.image %>">
+          <%#= a_photo.image %>
         </td>
 
         <td>
@@ -147,4 +225,4 @@
   </div>
 </div>
 
-<hr>
+<hr>-->
