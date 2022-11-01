@@ -56,3 +56,5 @@ Note: Run this command to get sample data
  ### Association Records Generator ###
 
 https://association-accessors.firstdraft.com/
+
+*** Dont' forget to run "rails grade" ***

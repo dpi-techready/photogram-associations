@@ -87,9 +87,12 @@
 
 
   <tr>
+      <!-- bring photos to users and render -->
+      <% the_photos = Photo.where({ :owner_id => @the_user.id })%>
+      <% the_photos.each do |a_photo| %>
     <td>
-      <img src="https://robohash.org/blanditiisrecusandaeut">
-      <img src="<%#= @the_photo.image %>">
+      <!--<img src="https://robohash.org/blanditiisrecusandaeut">-->
+      <img src="<%= a_photo.image %>">
     </td>
 
     <td>
@@ -97,24 +100,25 @@
     </td>
 
     <td>
-      Once you’ve accepted your flaws, no one can use them against you.
+      <%= a_photo.caption %>
+      <!-- Once you’ve accepted your flaws, no one can use them against you. -->
     </td>
 
     <td>
-      over 3 years ago
+      <%= time_ago_in_words(a_photo.created_at) %>
     </td>
 
     <td>
-      9
+      <%= a_photo.likes_count %>
     </td>
 
     <td>
-      <a href="/photos/773">
+      <a href="/photos/<% a_photo.id %>">
         Show details
       </a>
     </td>
   </tr>
-
+<% end %>
 </table>
 
   </body>
