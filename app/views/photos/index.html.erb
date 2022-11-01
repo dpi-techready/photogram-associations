@@ -36,10 +36,10 @@
       <!--<div>
         <label for="comments_count_box">
           Comments count
-        </label>
+        </label>-->
 
-        <input type="text" id="comments_count_box" name="query_comments_count">
-      </div>-->
+        <input type="hidden" id="comments_count_box" name="query_comments_count">
+      </div>
 
       <!--<div>
         <label for="image_box">
@@ -52,10 +52,10 @@
       <!--<div>
         <label for="likes_count_box">
           Likes count
-        </label>
+        </label>-->
 
-        <input type="text" id="likes_count_box" name="query_likes_count">
-      </div>-->
+        <input type="hidden" id="likes_count_box" name="query_likes_count">
+      </div>
 
       <div>
         <!--<label for="owner_id_box">
@@ -105,7 +105,8 @@
       <% @list_of_photos.each do |a_photo| %>
       <tr>
         <td>
-          <img src="<%= a_photo.image %>">
+          <img src="<%= a_photo.image %>" class="img-responsive"> <!-- after image upload new setup -->
+          <!--<img src="<%= a_photo.image %>">-->
           <%#= a_photo.image %>
         </td>
 

@@ -6,6 +6,7 @@
   </div>
 </div>
 
+
 <div>
   <div>
     <table border="1">
@@ -14,55 +15,66 @@
           Username
         </th>
 
-        <th>
-          Privare?
-        </th>
+    <th>
+      Private?
+    </th>
 
-        <th></th>
+    <% if @current_user != nil %>
+    <th></th>
+    <% end %>
 
-        <% if @current_user != nil %>
-        <th></th>
-        <% end %>
+    <th></th>
 
-      </tr>
+  </tr>
 
-      <% @list_of_users.each do |a_user| %>
-      <tr>
-        <td>
-          <%= a_user.username %>
-        </td>
+    <tr>
+    <% @list_of_users.each do |a_user| %>
+      <td>
+        <%= a_user.username %>
+      </td>
 
-        <td>
-          <!--<%= a_user.private %>-->
-          <%= humanize_boolean(a_user.private) %>
-        </td>
+      <td>
+        <%= humanize_boolean(a_user.private) %>
+      </td>
 
-        <% if @current_user != nil %>
-        <td>
-          <form action="/insert_follow_request/<% a_user.id %>" method="post">
-              <input type="hidden" name="query_recipient_id" value="<% a_user.id %>">
+      <td>
 
-              <button>
-                Follow
-              </button>
-            </form>
-        </td>
-        <!-- make this status and follow button show conditionally -->
-        <!--<td>
+        <form action="/insert_follow_request" method="post">
+          <input type="hidden" name="query_recipient_id" value="91">
+
+          <button>
+            Follow
+          </button>
+        </form>
+      </td>
+
+      <td>
+        <a href="/users/<%= a_user.username %>">Show details</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        anisa
+      </td>
+
+      <td>
+          Yes
+      </td>
+
+      <td>
+
             Request sent.
-        <a href="/delete_follow_request/<% a_user.id %>">Cancel</a>
-        </td>-->
-        <% end %>
 
-        <td>
-          <a href="/users/<%= a_user.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
+            <a href="/delete_follow_request/2355">
+              Cancel
+            </a>
+      </td>
 
-<hr>
+      <td>
+        <a href="/users/anisa">Show details</a>
+      </td>
+    </tr>
+    <tr>
+    <% end %>
+  </div>  
+</div>  

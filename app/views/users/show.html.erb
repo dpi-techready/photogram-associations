@@ -1,31 +1,34 @@
-    <h1><%#= @current_user.username %></h1>
-    <h1><%= @the_user.username %></h1>
+<h1><%= @the_user.username %></h1>
 
 <dl>
   <dt>Private</dt>
-  <dd><%= @current_user.private %></dd>
+  <dd><%= @the_user.private %></dd>
 
   <dt>Followers</dt>
   <dd>
     0
-
+    <div>
+      <a href="/delete_follow_request/<%# follow request ID %>">Unfollow</a>
     </div>
+    <!--</div>
 
       <h4>Pending follow requests</h4>
 
       <ul>
-      </ul>
+      </ul>-->
   </dd>
 
   <dt>Following</dt>
   <dd>0</dd>
 
+  <hr>
+  <% if @current_user == @the_user %>
   <dt>Edit user</dt>
   <dd>
-    <form action="/modify_user/#{<% @current_user.username %>}" method="post">
+    <form action="/modify_user/#{<% @the_user.username %>}" method="post">
       <label for="browser_username">Username</label>
       <input id="browser_username" type="text" name="query_username" placeholder="Enter a username..."
-        value="<%= @current_user.username %>">
+        value="<%= @the_user.username %>">
 
       <label for="browser_private">Private?</label>
       <input id="browser_private" type="checkbox" name="query_private" >
@@ -35,10 +38,13 @@
   </dd>
 </dl>
 
+<hr>
+<% end %>
+
 <nav>
   <ul>
     <li>
-      <a href="/users/<%= @current_user.id %>">Profile</a>
+      <a href="/users/<%= @the_user.id %>">Profile</a>
     </li>
     <li>
       <a href="/users/user/liked_photos">Liked photos</a>
@@ -77,6 +83,36 @@
     </th>
 
     <th></th>
+  </tr>
+
+
+  <tr>
+    <td>
+      <img src="https://robohash.org/blanditiisrecusandaeut">
+      <img src="<%#= @the_photo.image %>">
+    </td>
+
+    <td>
+      <%= @the_user.username %>
+    </td>
+
+    <td>
+      Once you’ve accepted your flaws, no one can use them against you.
+    </td>
+
+    <td>
+      over 3 years ago
+    </td>
+
+    <td>
+      9
+    </td>
+
+    <td>
+      <a href="/photos/773">
+        Show details
+      </a>
+    </td>
   </tr>
 
 </table>
