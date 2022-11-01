@@ -12,10 +12,6 @@
 #  owner_id       :integer
 #
 class Photo < ApplicationRecord
-
-    # Uploader line / Leave last
-
-    # mount_uploader :image, ImageUploader
   
     # Associations:
 
@@ -32,4 +28,8 @@ class Photo < ApplicationRecord
   
     #   return the_user
     # end
+
+    # Uploader line / Leave last
+
+    mount_uploader :image, ImageUploader
 end

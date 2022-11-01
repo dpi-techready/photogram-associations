@@ -87,11 +87,10 @@
 
 
   <tr>
-      <!-- bring photos to users and render -->
+      <!-- bring photos to user pages and render -->
       <% the_photos = Photo.where({ :owner_id => @the_user.id })%>
       <% the_photos.each do |a_photo| %>
     <td>
-      <!--<img src="https://robohash.org/blanditiisrecusandaeut">-->
       <img src="<%= a_photo.image %>">
     </td>
 
@@ -101,7 +100,6 @@
 
     <td>
       <%= a_photo.caption %>
-      <!-- Once you’ve accepted your flaws, no one can use them against you. -->
     </td>
 
     <td>

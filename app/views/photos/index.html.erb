@@ -15,14 +15,13 @@
     </h2>
 
     <form action="/insert_photo" method="post" class="form-horizontal" enctype="multipart/form-data">
-    <!--<form action="/insert_photo" method="post">-->
 
       <div>
         <label for="image_box">
           Image
         </label>
+        
         <input type="file" id="image_box" name="query_image" class="form-control">
-        <!--<input type="text" id="image_box" name="query_image">-->
       </div>
 
       <div>
@@ -33,34 +32,17 @@
         <textarea id="caption_box" name="query_caption" rows="3"></textarea>
       </div>
 
-      <!--<div>
-        <label for="comments_count_box">
-          Comments count
-        </label>-->
+      <div>
 
         <input type="hidden" id="comments_count_box" name="query_comments_count">
       </div>
 
-      <!--<div>
-        <label for="image_box">
-          Image
-        </label>
-        <input type="file" id="image_box" name="query_image" class="form-control">
-        <input type="text" id="image_box" name="query_image">
-      </div>-->
-
-      <!--<div>
-        <label for="likes_count_box">
-          Likes count
-        </label>-->
+      <div>
 
         <input type="hidden" id="likes_count_box" name="query_likes_count">
       </div>
 
       <div>
-        <!--<label for="owner_id_box">
-          Owner
-        </label>-->
 
         <input type="hidden" id="owner_id_box" name="query_owner_id" value="<%= @current_user.id %>">
       </div>
@@ -71,8 +53,10 @@
     </form>
   </div>
 </div>
-<hr>
 <% end %>
+
+<hr>
+
 
 <div>
   <div>
@@ -106,17 +90,16 @@
       <tr>
         <td>
           <img src="<%= a_photo.image %>" class="img-responsive"> <!-- after image upload new setup -->
-          <!--<img src="<%= a_photo.image %>">-->
-          <%#= a_photo.image %>
         </td>
 
         <td>
           <%= a_photo.caption %>
         </td>
+
+          <!-- bring users to photo page -->
           <% u = User.where({ :id => a_photo.owner_id }).at(0) %>
         <td>
         <%= u.username %>
-          <%#= a_photo.id%>
         </td>
 
 
@@ -141,89 +124,3 @@
 
 <hr>
 
-<!--<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Caption
-        </th>
-
-        <th>
-          Comments count
-        </th>
-
-        <th>
-          Image
-        </th>
-
-        <th>
-          Likes count
-        </th>
-
-        <th>
-          Owner
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_photos.each do |a_photo| %>
-      <tr>
-        <td>
-          <%= a_photo.id %>
-        </td>
-
-        <td>
-          <%= a_photo.caption %>
-        </td>
-
-        <td>
-          <%= a_photo.comments_count %>
-        </td>
-
-        <td>
-          <img src="<%= a_photo.image %>">
-          <%#= a_photo.image %>
-        </td>
-
-        <td>
-          <%= a_photo.likes_count %>
-        </td>
-
-        <td>
-          <%= a_photo.owner_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_photo.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_photo.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/photos/<%= a_photo.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>-->
