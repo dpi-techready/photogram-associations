@@ -47,13 +47,13 @@
       <a href="/users/<%= @the_user.id %>">Profile</a>
     </li>
     <li>
-      <a href="/users/user/liked_photos">Liked photos</a>
+      <a href="/users/<%= @the_user.id %>/liked_photos">Liked photos</a>
     </li>
     <li>
-      <a href="/users/user/feed">Feed</a>
+      <a href="/users/<%= @the_user.id %>/feed">Feed</a>
     </li>
     <li>
-      <a href="/users/user/discover">Discover</a>
+      <a href="/users/<%= @the_user.id %>/discover">Discover</a>
     </li>
   </ul>
 </nav>

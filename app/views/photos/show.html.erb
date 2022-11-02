@@ -39,7 +39,8 @@
         Owner
       </dt>
       <dd>
-        <%= @the_photo.owner_id %>
+      <% u = User.where({ :id => @the_photo.owner_id }).at(0) %>
+        <%= u.username %>
       </dd>
 
       <dt>
@@ -66,11 +67,28 @@
       <dt>
         Fans
       </dt>
+      <!-- bring fans/likes from table to pull user names for likes -->
       <dd>
-        <%= time_ago_in_words(@the_photo.updated_at) %> ago
+        <%#= fans.username %>
       </dd>
     </dl>
   </div>
+</div>
+
+<hr>
+
+<div>
+  <dt>Add a fan</dt>
+  <dd>
+    <form action="/insert_like" method="post">
+      <input type="hidden" value="747" name="query_photo_id">
+      <button>Like</button>
+    </form>
+  </dd>
+
+  <dd>
+    <a href="/delete_like/4223">Unlike</a>
+  </dd>
 </div>
 
 
@@ -113,22 +131,13 @@
           Image URL
         </label>
         <input type="file" id="image_box" name="query_image" class="form-control">
-        <!--<input type="text" id="image_box" name="query_image">-->
       </div>
 
       <div>
-        <!--<label for="likes_count_box">
-          Likes count
-        </label>-->
-
         <input type="hidden" id="likes_count_box" name="query_likes_count" value="<%= @the_photo.likes_count %>">
       </div>
 
       <div>
-        <!--<label for="owner_id_box">
-          Owner
-        </label>-->
-
         <input type="hidden" id="owner_id_box" name="query_owner_id" value="<%= @the_photo.owner_id %>">
       </div>
 
@@ -151,6 +160,8 @@
 
 <hr>
 
+<h2>Comments</h2>
+
 <table>
   <tr>
     <th>Commenter</th>
@@ -160,6 +171,7 @@
 
     <tr>
       <td>
+        <%# a_comment.author_id%>
         <%#= @the_comment.author_id %>
       </td>
 
@@ -173,5 +185,18 @@
       </td>
     </tr>  
 </table>
+
+<hr>
+
+<h3>Add a new comment</h3>
+
+<form action="/insert_comment" method="post">
+  <input type="hidden" value="747" name="query_photo_id">
+  
+  <label for="browser_comment">Comment</label>
+  <textarea id="browser_comment" name="query_body" placeholder="Enter a comment..."></textarea>
+
+  <button>Add comment</button>
+</form>
 
 <% end %>
